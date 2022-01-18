@@ -23,5 +23,6 @@ This repository belongs to project group J4.
 - Zito de Boer
 - Syed Sayam Hussain
 - Floris Ippel
+
 ## License
 [MIT](https://choosealicense.com/licenses/mit/)
