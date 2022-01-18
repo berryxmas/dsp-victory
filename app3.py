@@ -9,7 +9,8 @@ import openai
 import os
 from dotenv import load_dotenv
 from nltk.data import find
-import gensim 
+import gensim
+import pickle 
 
 # get openai api key
 load_dotenv()
@@ -74,6 +75,23 @@ def process_text(doc, selected_entities, anonymize=False):
             tokens.append(" " + token.text + " ")
     return tokens
 
+#process for classifying vacancies
+def vac_classification(user_input):
+    # load the model from disk
+    final_model = 'imb_model.pkl'
+    loaded_model = pickle.load(open(final_model, 'rb'))
+    #prediction for the vacancy
+    pred  = loaded_model.predict_proba([user_input])
+    if pred[0][0] > pred[0][1]:
+        result = "**Non Discriminative**"
+        percentage = pred[0][0]
+    else:
+        result = "**Discriminative**"
+        percentage = pred[0][1]
+    perc = str(round(percentage*100,2))+"%"
+    return result, perc
+
+
 # ---- layout -----
 # sidebar
 st.sidebar.title("J4 Vacancy Analysis App")
@@ -134,8 +152,10 @@ row3_space1, row3_1, row3_space2, row3_2, row3_space3 = st.columns(
     (.1, 1, .1, 1, .1))
 
 with row3_1, _lock:
+    res,perc = vac_classification(user_input)
     st.subheader('Vacancy non-inclusiveness percentage')
-    st.write("We believe your vacancy is non-inclusive for 79%")
+    st.write("Your vacancy is classified as:  " +res)
+    st.metric("Non-inclusiveness percentage:  ",value=perc)
 
 with row3_2, _lock:
     st.subheader('Non-inclusive words')
