@@ -8,6 +8,8 @@ import spacy
 import openai
 import os
 from dotenv import load_dotenv
+from nltk.data import find
+import gensim 
 
 # get openai api key
 load_dotenv()
@@ -20,13 +22,17 @@ st.set_page_config(
 
 _lock = RendererAgg.lock
 
-# import model
+# import NER model Spacy
 @st.cache(show_spinner=False, allow_output_mutation=True, suppress_st_warning=True)
 def load_models():
     dutch_model = spacy.load("./models/NL/nl_core_news_sm/nl_core_news_sm-3.2.0/")
     english_model = spacy.load("./models/ENG/en_core_web_sm/en_core_web_sm-3.2.0/")
     models = {"ENG": english_model, "NL": dutch_model}
     return models
+
+# import suggestion model NLTK
+word2vec_sample = str(find('models/word2vec_sample/pruned.word2vec.txt'))
+model = gensim.models.KeyedVectors.load_word2vec_format(word2vec_sample, binary=False)
 
 # Define question answering model TODO remove apikey
 @st.cache(show_spinner=False, allow_output_mutation=True, suppress_st_warning=True)
@@ -152,12 +158,16 @@ with row4_2, _lock:
     st.text("")
     st.text("")
     st.text("")
-    st.write("Your suggestion for '"+suggestion_input+"' will be:")
-    # making suggestion
+    st.markdown("**Your suggestion for '"+suggestion_input+"' will be:**")
+    # making suggestion gpt3 model
+    st.markdown("_Based on GPT-3:_")
     initial_query = "What is another word for "
     response = gpt3(initial_query+suggestion_input+"?")
     st.write(response)
-
+    # making suggestion NLTK model
+    st.markdown("_Based on NLTK model:_")
+    st.table(pd.DataFrame(model.most_similar(positive=[suggestion_input], topn = 5), columns=['Suggestion','Percentage similar']))
+    
 st.markdown("""---""")
 
 st.subheader('Named Entity Recognition')
