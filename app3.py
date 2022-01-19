@@ -84,11 +84,9 @@ def vac_classification(user_input):
     pred  = loaded_model.predict_proba([user_input])
     if pred[0][0] > pred[0][1]:
         result = "**Non Discriminative**"
-        percentage = pred[0][0]
     else:
         result = "**Discriminative**"
-        percentage = pred[0][1]
-    perc = str(round(percentage*100,2))+"%"
+    perc = str(round(pred[0][1]*100,2))+"%"
     return result, perc
 
 
