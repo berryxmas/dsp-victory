@@ -81,6 +81,7 @@ Flask @ file:///home/ktietz/src/ci/flask_1611932660458/work
 fonttools==4.25.0
 fsspec @ file:///tmp/build/80754af9/fsspec_1632413898837/work
 future @ file:///opt/concourse/worker/volumes/live/f456638c-86a7-4060-7f5f-d499a051219b/volume/future_1607571337593/work
+gensim==4.1.2
 gevent @ file:///opt/concourse/worker/volumes/live/014e1366-b455-480b-61a8-9a69e4909791/volume/gevent_1628273687151/work
 gitdb==4.0.9
 GitPython==3.1.25
@@ -95,6 +96,8 @@ idna @ file:///tmp/build/80754af9/idna_1622654382723/work
 imagecodecs @ file:///opt/concourse/worker/volumes/live/ab9fe69e-f7d4-471a-6199-cb95a745fb88/volume/imagecodecs_1635529117386/work
 imageio @ file:///tmp/build/80754af9/imageio_1617700267927/work
 imagesize @ file:///Users/ktietz/demo/mc3/conda-bld/imagesize_1628863108022/work
+imbalanced-learn==0.9.0
+imblearn==0.0
 importlib-metadata @ file:///opt/concourse/worker/volumes/live/b1c84e32-1519-4554-50d3-980dc7c220d9/volume/importlib-metadata_1631916711680/work
 inflection==0.5.1
 iniconfig @ file:///home/linux1/recipes/ci/iniconfig_1610983019677/work
@@ -370,7 +373,7 @@ ruamel-yaml-conda @ file:///opt/concourse/worker/volumes/live/e81cf0fe-611a-498e
 ruamel.yaml==0.17.20
 ruamel.yaml.clib==0.2.6
 scikit-image==0.18.3
-scikit-learn @ file:///opt/concourse/worker/volumes/live/83f46a43-da2a-467b-5581-ed2cbd128684/volume/scikit-learn_1621370403088/work
+scikit-learn==1.0.2
 scikit-learn-intelex==2021.20210714.100439
 scipy @ file:///opt/concourse/worker/volumes/live/8e481b15-67b8-4160-7a8b-26cd6e8fe54f/volume/scipy_1630606804826/work
 seaborn @ file:///tmp/build/80754af9/seaborn_1629307859561/work
