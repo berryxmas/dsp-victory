@@ -136,7 +136,7 @@ if uploaded_file is not None:
 # Data for highlight non-inclusive words
 seperators = "\? |\."
 
-flexible_orange = open("./data/flexible_orange_v2.txt", "r")
+flexible_orange = open("./data/regex_list.txt", "r")
 
 pattern_list = []
 for line in flexible_orange:
